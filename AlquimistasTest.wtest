@@ -31,4 +31,7 @@ describe "AlquimistasTest" {
 		assert.equals(100, alquimista.capacidadOfensiva())
 	}
 	
+	test "La capacidad ofensiva de un debilitador sin elementos misticos es 5" {
+		assert.equals(5, debilitador.capacidadOfensiva())
+	}
 }
