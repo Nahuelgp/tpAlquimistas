@@ -51,13 +51,13 @@ object bomba {
 
 object pocion {
   var materiales = []
-  var poderCurativo = 0
+  var poderCurativo = 25
   
   method capacidadOfensiva(){
   	return poderCurativo + 10*self.cantidadDeMaterialesMisticos()
   }
   
-  method cantidadDeMAterialesMisticos(){
+  method cantidadDeMaterialesMisticos(){
   	return materiales.count({item => item.fueCreadaConAlgunMaterialMistico()})
   }
   
@@ -84,6 +84,19 @@ object debilitador {
     return materiales.any({ material =>
       material.esMistico()
     })
+  }
+  
+  method cantidadDeMaterialesMisticos(){
+  	return materiales.count({item => item.fueCreadaConAlgunMaterialMistico()})
+  }
+  
+  method capacidadOfensiva(){
+  	if(self.fueCreadoPorAlgunMaterialMistico()){
+  		return 12*self.cantidadDeMaterialesMisticos()
+  	}
+  	else {
+  		return 5
+  	}
   }
 
 }
