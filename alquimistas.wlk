@@ -36,7 +36,7 @@ object alquimista {
   }
   
   method esProfesional(){
-  	return (self.calidadPromedioDeItems() < 50) and (self.esBuenExplorador()) and (self.cantidadDeItemsDeCombate() == self.cantidadDeItemsDeCombateEfectivos())
+  	return ((self.calidadPromedioDeItems() > 50) and (self.esBuenExplorador()) and (self.cantidadDeItemsDeCombate() == self.cantidadDeItemsDeCombateEfectivos()))
   }
   
   method calidadPromedioDeItems(){
@@ -66,7 +66,7 @@ object bomba {
   }
   
   method calidad(){
-  	return materiales.min({material => material.calidadDelMaterial()})
+  	return materiales.min({material => material.calidadDeMaterial()})
   }
   
 }
@@ -132,5 +132,14 @@ object debilitador {
   		return 5
   	}
   }
+  
+  method calidad(){
+      return self.dosMaterialesDeMayorCalidad().sum() / 2
+  }
+
+  method dosMaterialesDeMayorCalidad(){
+  return materiales.sortBy({unMaterial,otroMaterial => unMaterial.calidadDeMaterial() > otroMaterial.calidadDeMaterial()}).take(2)
+  }
 
 }
+
