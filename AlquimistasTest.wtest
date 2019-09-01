@@ -34,4 +34,8 @@ describe "AlquimistasTest" {
 	test "La capacidad ofensiva de un debilitador sin elementos misticos es 5" {
 		assert.equals(5, debilitador.capacidadOfensiva())
 	}
+	
+	test "Un alquimista sin objetos no es profesional" {
+		assert.notThat(alquimista.esProfesional())
+	}
 }
